@@ -3,11 +3,11 @@ class Solution:
         tally = [0] * 26
 
         for char_s in s:
-            index = ord(char_s) - ord('a')
+            index = self.getIndex(char_s)
             tally[index] += 1
         
         for char_t in t:
-            index = ord(char_t) - ord('a')
+            index = self.getIndex(char_t)
             if tally[index] == 0:
                 return False
             tally[index] -= 1
@@ -17,3 +17,7 @@ class Solution:
                 return False
             
         return True
+    
+
+    def getIndex(self, c: char) -> int:
+        return ord(c) - ord('a')
