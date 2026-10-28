@@ -6,8 +6,9 @@ class Solution:
             counterpart = target - num
 
             if counterpart in seen:
-                return [i, seen.get(counterpart)]
+                return [i, seen[counterpart]]
             
             seen[num] = i
 
         return []
+        # TC: O(N), SC: O(N)
