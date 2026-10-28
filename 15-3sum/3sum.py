@@ -1,17 +1,18 @@
 class Solution:
     def threeSum(self, nums: list[int]) -> list[list[int]]:
         nums.sort()
-        answer = []
         n = len(nums)
+        answer = []
 
         for i in range(n):
             if nums[i] > 0:
                 break
-            elif i > 0 and nums[i] == nums[i-1]:
-                continue #no need to work through another duplicate
-
-            low, high = i+1, n-1
-
+            if i > 0 and nums[i] == nums[i-1]:
+                continue
+            
+            low = i + 1
+            high = n - 1
+     
             while low < high:
                 sum = nums[i] + nums[low] + nums[high]
                 if sum == 0:
@@ -24,8 +25,8 @@ class Solution:
                         high -= 1
                 elif sum < 0:
                     low += 1
-                else:
+                else: 
                     high -= 1
-                    
-
         return answer
+
+            
