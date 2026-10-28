@@ -1,30 +1,24 @@
 class Solution:
     def productExceptSelf(self, nums: list[int]) -> list[int]:
         n = len(nums)
+        right_arr = [0] * n # product of all num RIGHT OF N
+        left_arr = [0] * n # product of all num LEFT OF N
+        right_arr[0] = 1
+        left_arr[-1] = 1
+        curr_r_product = 1
+        curr_l_product = 1
+        # [1,  1,  2, 6]
+        # [24, 12, 4, 1]
 
-        l_array = [0] * n # auxiliary array, same size of nums, will contain products of all left items of i
-        r_array = [0] * n # auxiliary array, same size of nums, will contain products of all right items of i
-        
-        l_multiplier = 1 
-        r_multiplier = 1 
 
-        # expectation
-        # l_array =                              [1,   1, 2, 6]
-        # r_array = [1, 4, 12, 24] in reverse -> [24, 12, 4, 1]
-        # answer:                                [24, 12, 8, 6]
-
-        for i in range(n):
+        for i in range(len(nums)):
             j = -i - 1
-
-            # populate l_array
-            l_array[i] = l_multiplier
-            l_multiplier *= nums[i]
-
-            #populate r_array
-            r_array[j] = r_multiplier
-            r_multiplier *= nums[j]
-
-        return [l*r for l, r in zip(l_array, r_array)]
-
-    # TC: O(N) , N is the size of the array
-    # SC: O(1)
+            right_arr[j] = curr_r_product
+            left_arr[i] = curr_l_product
+            curr_r_product *= nums[j]
+            curr_l_product *= nums[i]
+ 
+        
+        return [l*r for l, r in zip(right_arr, left_arr)]
+        
+        
