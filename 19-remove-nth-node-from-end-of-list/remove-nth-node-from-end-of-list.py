@@ -11,7 +11,7 @@ class Solution:
 
         slow = fast = dummy
 
-        for i in range(n+1):
+        for _ in range(n+1):
             fast = fast.next
         
         while fast: 
